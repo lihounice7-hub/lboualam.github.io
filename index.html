@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BOUALAM Lihounice — Portfolio BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --bg:#F5F3EF;
+  --bg2:#EDEAE4;
+  --white:#FFFFFF;
+  --ink:#0A0A0F;
+  --ink2:#1A1A2E;
+  --muted:#7A7A8A;
+  --muted2:#A8A8B8;
+  --accent:#2563EB;
+  --accent-light:#EBF2FF;
+  --accent2:#7C3AED;
+  --green:#059669;
+  --green-light:#ECFDF5;
+  --amber:#D97706;
+  --amber-light:#FFFBEB;
+  --red:#DC2626;
+  --red-light:#FEF2F2;
+  --border:rgba(10,10,15,0.08);
+  --border2:rgba(10,10,15,0.14);
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.05);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
+}
+
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--muted2);border-radius:99px;}
+
+/* ─── GRAIN OVERLAY ─── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:0.4;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:0 4rem;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(245,243,239,0.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:19px;
+  color:var(--ink);letter-spacing:-0.5px;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  animation:breathe 3s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:0.7;}}
+.nav-links{display:flex;align-items:center;gap:0.2rem;}
+.nav-links a{
+  text-decoration:none;font-size:13.5px;font-weight:500;
+  color:var(--muted);padding:7px 14px;border-radius:8px;
+  transition:all 0.2s;
+}
+.nav-links a:hover{color:var(--ink);background:rgba(0,0,0,0.04);}
+.nav-links a.active{color:var(--accent);}
+.nav-cta{
+  background:var(--ink) !important;color:var(--white) !important;
+  padding:8px 20px !important;border-radius:99px !important;
+  font-weight:600 !important;font-size:13px !important;
+}
+.nav-cta:hover{background:var(--accent) !important;color:var(--white) !important;}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;overflow:hidden;
+}
+.hero-left{
+  padding:140px 4rem 80px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:2;
+}
+.hero-right{
+  position:relative;overflow:hidden;
+  background:var(--ink2);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Animated grid background on hero-right */
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(37,99,235,0.15) 1px,transparent 1px);
+  background-size:48px 48px;
+  animation:gridMove 20s linear infinite;
+}
+@keyframes gridMove{0%{background-position:0 0;}100%{background-position:48px 48px;}}
+.hero-right::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 30%,var(--ink2) 80%);
+}
+.hero-avatar-scene{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:2rem;
+}
+.avatar-orb{
+  width:180px;height:180px;border-radius:50%;
+  background:linear-gradient(135deg,#1D4ED8,#7C3AED);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.1),0 0 60px rgba(37,99,235,0.4);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.avatar-orb span{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:3.2rem;color:white;letter-spacing:-1px;
+}
+.avatar-ring1{
+  position:absolute;width:210px;height:210px;border-radius:50%;
+  border:1px solid rgba(37,99,235,0.3);
+  animation:ringPulse 3s ease-in-out infinite;
+}
+.avatar-ring2{
+  position:absolute;width:250px;height:250px;border-radius:50%;
+  border:1px solid rgba(37,99,235,0.15);
+  animation:ringPulse 3s ease-in-out infinite 1s;
+}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.04);opacity:0.5;}}
+.hero-badges{
+  display:flex;flex-direction:column;gap:10px;align-items:center;
+}
+.hero-badge-pill{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:99px;padding:6px 16px;
+  font-size:12px;color:rgba(255,255,255,0.7);
+  font-weight:500;letter-spacing:0.3px;
+  backdrop-filter:blur(8px);
+}
+.hero-badge-pill span{color:var(--accent);font-weight:600;}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.5rem;
+}
+.eyebrow-line{width:32px;height:1.5px;background:var(--accent);}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:4.8rem;line-height:0.95;
+  color:var(--ink);letter-spacing:-3px;
+  margin-bottom:1.5rem;
+}
+.hero h1 .line2{
+  color:transparent;
+  -webkit-text-stroke:2px var(--ink);
+  letter-spacing:-3px;
+}
+.hero-desc{
+  font-size:15px;color:var(--muted);
+  line-height:1.75;max-width:420px;
+  margin-bottom:2.5rem;font-weight:400;
+}
+.hero-ctas{display:flex;gap:12px;margin-bottom:3rem;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:12px;
+  font-family:'Outfit',sans-serif;
+  font-size:14px;font-weight:600;
+  cursor:pointer;text-decoration:none;
+  transition:all 0.25s;border:none;
+  position:relative;overflow:hidden;
+}
+.btn-primary{
+  background:var(--ink);color:white;
+}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.3);}
+.btn-secondary{
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--border2);
+}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-stats{
+  display:flex;gap:2rem;
+  padding-top:2rem;border-top:1px solid var(--border);
+}
+.stat-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2rem;color:var(--ink);line-height:1;
+}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;font-weight:400;}
+
+/* ─── SECTION BASE ─── */
+.section{padding:7rem 4rem;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-header{margin-bottom:3.5rem;}
+.s-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:10px;margin-bottom:1rem;
+}
+.s-eyebrow::after{content:'';flex:0 0 32px;height:1.5px;background:var(--accent);}
+.s-title{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2.8rem;color:var(--ink);letter-spacing:-1.5px;
+  line-height:1.05;
+}
+.s-desc{font-size:15px;color:var(--muted);line-height:1.7;max-width:520px;margin-top:0.75rem;}
+
+/* ─── COMPÉTENCES ─── */
+#competences{background:var(--white);}
+.comp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+}
+.comp-cell{
+  background:var(--white);
+  padding:2rem;
+  transition:background 0.3s;
+  position:relative;
+}
+.comp-cell:hover{background:var(--bg);}
+.comp-cell::after{
+  content:'';position:absolute;
+  bottom:0;left:2rem;right:2rem;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  border-radius:99px;
+}
+.comp-cell:hover::after{transform:scaleX(1);}
+.comp-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:11px;color:var(--muted2);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:1rem;
+}
+.comp-icon{
+  width:44px;height:44px;border-radius:12px;
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.comp-cell h3{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:0.5rem;}
+.comp-cell p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
+.comp-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{
+  font-size:11px;font-weight:500;padding:3px 9px;
+  border-radius:99px;background:var(--bg);
+  border:1px solid var(--border2);color:var(--muted);
+}
+
+/* ─── PROJETS ─── */
+#projets{background:var(--bg);}
+.projet-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.projet-card{
+  background:var(--white);border-radius:20px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
+  position:relative;
+}
+.projet-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.projet-card-top{
+  height:160px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.projet-num-bg{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:7rem;color:rgba(0,0,0,0.04);
+  position:absolute;right:-10px;bottom:-20px;
+  user-select:none;line-height:1;letter-spacing:-4px;
+}
+.projet-icon-wrap{
+  width:64px;height:64px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+}
+.projet-icon-wrap svg{width:28px;height:28px;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.projet-body{padding:1.5rem;}
+.projet-label{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:0.5rem;
+  opacity:0.6;
+}
+.projet-body h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:0.5rem;line-height:1.3;}
+.projet-body p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:1rem;}
+.projet-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.ptag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;}
+
+/* ─── STAGES ─── */
+#stages{background:var(--white);}
+.stage-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.stage-card{
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--white);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.stage-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.stage-card-banner{
+  height:90px;display:flex;align-items:center;
+  padding:0 1.75rem;gap:14px;
+}
+.stage-year{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2rem;color:rgba(255,255,255,0.25);
+  letter-spacing:-2px;
+}
+.stage-badge{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:white;padding:4px 12px;border-radius:99px;
+}
+.stage-body{padding:1.5rem 1.75rem;}
+.stage-company{
+  font-size:12px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:0.4rem;
+}
+.stage-body h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:0.75rem;}
+.stage-body p{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:1.25rem;}
+.stage-missions{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.stage-missions li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--muted);
+}
+.mission-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;
+}
+
+/* ─── VEILLE ─── */
+#veille{background:var(--bg);}
+.veille-filters{display:flex;gap:8px;margin-bottom:2rem;flex-wrap:wrap;}
+.vf-btn{
+  font-family:'Outfit',sans-serif;
+  font-size:13px;font-weight:600;
+  padding:8px 18px;border-radius:99px;
+  border:1.5px solid var(--border2);
+  background:var(--white);color:var(--muted);
+  cursor:pointer;transition:all 0.2s;
+}
+.vf-btn:hover{border-color:var(--accent);color:var(--accent);}
+.vf-btn.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.veille-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.veille-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  position:relative;
+}
+.veille-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--border2);}
+.veille-card-stripe{height:4px;width:100%;}
+.veille-card-body{padding:1.25rem;flex:1;}
+.veille-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;}
+.v-cat{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:99px;}
+.v-cat-securite{background:var(--red-light);color:var(--red);}
+.v-cat-reseau{background:var(--accent-light);color:var(--accent);}
+.v-cat-cloud{background:var(--green-light);color:var(--green);}
+.v-cat-systeme{background:var(--amber-light);color:var(--amber);}
+.v-date{font-size:11.5px;color:var(--muted2);}
+.veille-card h3{font-size:14px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:0.6rem;}
+.veille-card p{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.veille-card-footer{
+  padding:0.75rem 1.25rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.v-source{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:500;}
+.v-source svg{width:12px;height:12px;opacity:0.5;transition:opacity 0.2s;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.veille-card:hover .v-source svg{opacity:1;}
+.v-impact{font-size:11.5px;font-weight:700;}
+.v-impact.high{color:var(--red);}
+.v-impact.mid{color:var(--amber);}
+.v-impact.low{color:var(--green);}
+
+.methode-section{
+  margin-top:2.5rem;
+  background:var(--white);border-radius:20px;
+  border:1px solid var(--border);
+  padding:2rem;
+  display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;
+}
+.methode-label{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted2);writing-mode:vertical-rl;
+  transform:rotate(180deg);
+}
+.methode-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.m-step{
+  padding:1.25rem;background:var(--bg);
+  border-radius:14px;border:1px solid var(--border);
+}
+.m-step-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1.6rem;color:var(--border2);line-height:1;margin-bottom:0.5rem;
+}
+.m-step h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.m-step p{font-size:12px;color:var(--muted);line-height:1.55;}
+
+/* ─── CONTACT ─── */
+#contact{background:var(--ink2);position:relative;overflow:hidden;}
+#contact::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(37,99,235,0.1) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 25s linear infinite;
+}
+#contact::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 100%,rgba(37,99,235,0.15) 0%,transparent 60%);
+}
+@keyframes gridMove{0%{background-position:0 0;}100%{background-position:60px 60px;}}
+.contact-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  max-width:1100px;margin:0 auto;padding:7rem 4rem;
+}
+.contact-left .s-eyebrow::after{background:rgba(255,255,255,0.3);}
+.contact-left .s-eyebrow{color:rgba(255,255,255,0.5);}
+.contact-left .s-title{color:white;font-size:3rem;}
+.contact-left .s-desc{color:rgba(255,255,255,0.5);}
+.contact-links{display:flex;flex-direction:column;gap:12px;margin-top:2.5rem;}
+.c-link{
+  display:flex;align-items:center;gap:14px;
+  padding:1.1rem 1.4rem;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;text-decoration:none;color:white;
+  transition:all 0.25s;backdrop-filter:blur(8px);
+}
+.c-link:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);transform:translateX(6px);}
+.c-link-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.c-link-icon svg{width:16px;height:16px;stroke:white;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.c-link-label{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:2px;}
+.c-link-val{font-size:14px;font-weight:600;}
+.contact-right{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:24px;padding:2.5rem;
+  backdrop-filter:blur(16px);
+}
+.about-title{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1.5rem;color:white;margin-bottom:4px;letter-spacing:-0.5px;
+}
+.about-role{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:1.5rem;}
+.about-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:1.5rem;}
+.about-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.a-chip{
+  font-size:12px;font-weight:600;padding:5px 13px;
+  border-radius:99px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.7);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--ink);
+  color:rgba(255,255,255,0.3);
+  text-align:center;padding:1.5rem;font-size:12.5px;
+}
+footer strong{color:rgba(255,255,255,0.6);font-weight:600;}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(0.4,0,0.2,1),transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.up{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+.reveal-delay-4{transition-delay:0.4s;}
+.reveal-delay-5{transition-delay:0.5s;}
+.reveal-delay-6{transition-delay:0.6s;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;}
+  .hero-right{height:300px;}
+  .hero-left{padding:110px 2rem 60px;}
+  .hero h1{font-size:3.2rem;}
+  .section{padding:5rem 2rem;}
+  .comp-grid{grid-template-columns:1fr 1fr;}
+  .projet-grid{grid-template-columns:1fr;}
+  .stage-layout{grid-template-columns:1fr;}
+  .veille-grid{grid-template-columns:1fr 1fr;}
+  .methode-steps{grid-template-columns:1fr 1fr;}
+  .contact-inner{grid-template-columns:1fr;padding:5rem 2rem;}
+  nav{padding:0 1.5rem;}
+  .nav-links a:not(.nav-cta){display:none;}
+  .methode-section{grid-template-columns:1fr;}
+  .methode-label{writing-mode:horizontal-tb;transform:none;}
+}
+@media(max-width:600px){
+  .comp-grid{grid-template-columns:1fr;}
+  .veille-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:2.6rem;letter-spacing:-2px;}
+  .s-title{font-size:2.1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    BOUALAM<span style="color:var(--accent)">.</span>
+  </a>
+  <div class="nav-links">
+    <a href="#projets">Projets</a>
+    <a href="#veille">Veille</a>
+    <a href="#contact" class="nav-cta">Contact →</a>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      BTS SIO — Option SISR
+    </div>
+    <h1>
+      BOUALAM<br>
+      <span class="line2">Lihounice</span>
+    </h1>
+    <p class="hero-desc">
+      Étudiante en 2ème année de BTS SIO spécialisée en <strong>réseaux, systèmes et sécurité informatique</strong>. Je conçois, déploie et sécurise des infrastructures numériques.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projets" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Mes projets
+      </a>
+      <a href="#contact" class="btn btn-secondary">Me contacter</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Stages réalisés</div>
+      </div>
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Projets SI</div>
+      </div>
+      <div>
+        <div class="stat-num">SISR</div>
+        <div class="stat-label">Spécialité</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-avatar-scene">
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+        <div class="avatar-ring1"></div>
+        <div class="avatar-ring2"></div>
+        <div class="avatar-orb"><span>BL</span></div>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-pill">Réseaux <span>TCP/IP</span> · VLAN · Routage</div>
+        <div class="hero-badge-pill">Sécurité <span>ANSSI</span> · Pare-feu · VPN</div>
+        <div class="hero-badge-pill">Systèmes <span>Windows Server</span> · Linux</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PROJETS ══ -->
+<section id="projets" class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="s-eyebrow">Réalisations</div>
+      <h2 class="s-title">Projets & TP</h2>
+      <p class="s-desc">Situations professionnelles significatives réalisées en formation BTS SIO SISR.</p>
+    </div>
+    <div class="projet-grid">
+
+      <div class="projet-card reveal reveal-delay-1">
+        <div class="projet-card-top" style="background:#FFF7ED;">
+          <div class="projet-num-bg" style="color:rgba(234,88,12,0.07);">01</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(234,88,12,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+        </div>
+        <div class="projet-body">
+          <div class="projet-label" style="color:#EA580C;">Marketing digital</div>
+          <h3>Développement de la présence en ligne via Google Ads</h3>
+          <p>Création et gestion de campagnes publicitaires sur YouTube, Facebook et Google pour développer la visibilité de l'entreprise. Suivi des performances, optimisation des annonces et analyse des KPIs.</p>
+          <div class="projet-tags">
+            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">Google Ads</span>
+            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">YouTube</span>
+            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">Facebook Ads</span>
+            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">KPIs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-card reveal reveal-delay-2">
+        <div class="projet-card-top" style="background:#FAF5FF;">
+          <div class="projet-num-bg" style="color:rgba(124,58,237,0.08);">02</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(124,58,237,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+        <div class="projet-body">
+          <div class="projet-label" style="color:#7C3AED;">Support client</div>
+          <h3>Gestion du SAV & suivi des tickets clients</h3>
+          <p>Prise en charge des problématiques clients, réponse aux demandes et résolution des incidents. Mise en place d'un suivi rigoureux via un logiciel interne de gestion des tickets SAV.</p>
+          <div class="projet-tags">
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">SAV</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Ticketing</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Relation client</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Suivi incidents</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-card reveal reveal-delay-3">
+        <div class="projet-card-top" style="background:#FAF5FF;">
+          <div class="projet-num-bg" style="color:rgba(124,58,237,0.06);">03</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(124,58,237,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+        </div>
+        <div class="projet-body">
+          <div class="projet-label" style="color:#7C3AED;">Systèmes Windows</div>
+          <h3>Domaine Active Directory complet</h3>
+          <p>Installation d'un contrôleur de domaine, unités d'organisation, GPO, politique de mots de passe et jonction des postes clients au domaine.</p>
+          <div class="projet-tags">
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Windows Server</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Active Directory</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">GPO</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ══ VEILLE ══ -->
+<section id="veille" class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="s-eyebrow">Actualité téléphonie mobile</div>
+      <h2 class="s-title">Veille technologique</h2>
+      <p class="s-desc">Suivi des évolutions de la téléphonie mobile : 5G, eSIM, roaming et sécurité. Sources : ARCEP, ANSSI, LeMagIT, Journal du Net, Frandroid.</p>
+    </div>
+    <div class="veille-filters reveal">
+      <button class="vf-btn active" data-filter="tous">Tous</button>
+      <button class="vf-btn" data-filter="5g">5G</button>
+      <button class="vf-btn" data-filter="esim">eSIM</button>
+      <button class="vf-btn" data-filter="securite">Sécurité mobile</button>
+    </div>
+    <div class="veille-grid" id="veilleGrid">
+
+      <a class="veille-card" data-cat="5g" href="https://www.arcep.fr/la-regulation/grands-dossiers-reseaux-mobiles/la-5g.html" target="_blank" rel="noopener">
+        <div class="veille-card-stripe" style="background:linear-gradient(90deg,#2563EB,#7C3AED);"></div>
+        <div class="veille-card-body">
+          <div class="veille-meta">
+            <span class="v-cat v-cat-reseau">5G</span>
+            <span class="v-date">Fév. 2025</span>
+          </div>
+          <h3>C'est quoi la 5G et en quoi est-elle différente de la 4G ?</h3>
+          <p>La 5G est la 5ème génération de réseau mobile. Elle est beaucoup plus rapide que la 4G et permet de connecter plus d'appareils en même temps, comme des objets connectés ou des voitures autonomes.</p>
+        </div>
+        <div class="veille-card-footer">
+          <span class="v-source">ARCEP <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          <span class="v-impact high">● Impact élevé</span>
+        </div>
+      </a>
+
+      <a class="veille-card" data-cat="esim" href="https://www.journaldunet.com/telecom/1519756-esim-tout-savoir/" target="_blank" rel="noopener">
+        <div class="veille-card-stripe" style="background:linear-gradient(90deg,#059669,#10B981);"></div>
+        <div class="veille-card-body">
+          <div class="veille-meta">
+            <span class="v-cat v-cat-cloud">eSIM</span>
+            <span class="v-date">Janv. 2025</span>
+          </div>
+          <h3>L'eSIM : une carte SIM sans carte physique</h3>
+          <p>Avec l'eSIM, plus besoin d'insérer une carte SIM dans son téléphone. L'abonnement est chargé directement sur le téléphone. On peut changer d'opérateur en quelques clics, sans aller en boutique.</p>
+        </div>
+        <div class="veille-card-footer">
+          <span class="v-source">Journal du Net <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          <span class="v-impact mid">● Impact modéré</span>
+        </div>
+      </a>
+
+      <a class="veille-card" data-cat="securite" href="https://www.ssi.gouv.fr/guide/securite-des-smartphones/" target="_blank" rel="noopener">
+        <div class="veille-card-stripe" style="background:linear-gradient(90deg,#DC2626,#F97316);"></div>
+        <div class="veille-card-body">
+          <div class="veille-meta">
+            <span class="v-cat v-cat-securite">Sécurité mobile</span>
+            <span class="v-date">Déc. 2024</span>
+          </div>
+          <h3>Comment protéger son smartphone au quotidien ?</h3>
+          <p>L'ANSSI rappelle les bons réflexes : mettre à jour ses applications, ne pas se connecter à un Wi-Fi public non sécurisé, activer le verrouillage par code et faire attention aux SMS frauduleux (phishing).</p>
+        </div>
+        <div class="veille-card-footer">
+          <span class="v-source">ANSSI <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          <span class="v-impact high">● Impact élevé</span>
+        </div>
+      </a>
+
+
+      <a class="veille-card" data-cat="5g" href="https://www.frandroid.com/telephones/1500000_comment-savoir-si-on-est-couvert-par-la-5g" target="_blank" rel="noopener">
+        <div class="veille-card-stripe" style="background:linear-gradient(90deg,#2563EB,#7C3AED);"></div>
+        <div class="veille-card-body">
+          <div class="veille-meta">
+            <span class="v-cat v-cat-reseau">5G</span>
+            <span class="v-date">Oct. 2024</span>
+          </div>
+          <h3>La 5G est-elle disponible partout en France ?</h3>
+          <p>La 5G couvre aujourd'hui les grandes villes, mais les campagnes restent encore en 4G. Les opérateurs utilisent des fréquences basses (700 MHz) pour étendre la couverture dans les zones rurales.</p>
+        </div>
+        <div class="veille-card-footer">
+          <span class="v-source">Frandroid <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          <span class="v-impact mid">● Impact modéré</span>
+        </div>
+      </a>
+
+      <a class="veille-card" data-cat="esim" href="https://www.frandroid.com/telephones/1900000_esim-multi-sim-comment-ca-marche" target="_blank" rel="noopener">
+        <div class="veille-card-stripe" style="background:linear-gradient(90deg,#059669,#10B981);"></div>
+        <div class="veille-card-body">
+          <div class="veille-meta">
+            <span class="v-cat v-cat-cloud">eSIM</span>
+            <span class="v-date">Sept. 2024</span>
+          </div>
+          <h3>eSIM vs SIM classique : quelles différences concrètes ?</h3>
+          <p>La SIM classique est une petite carte plastique à insérer dans le téléphone. L'eSIM est intégrée directement dans l'appareil. Les deux font la même chose, mais l'eSIM est plus pratique pour voyager ou changer d'offre.</p>
+        </div>
+        <div class="veille-card-footer">
+          <span class="v-source">Frandroid <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          <span class="v-impact low">● Impact faible</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="methode-section reveal">
+      <div class="methode-label">Méthode</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:1.25rem;">Ma démarche de veille</div>
+        <div class="methode-steps">
+          <div class="m-step">
+            <div class="m-step-num">01</div>
+            <h4>Collecte</h4>
+            <p>Alertes ARCEP, newsletters LeMagIT, Frandroid et flux RSS spécialisés téléphonie.</p>
+          </div>
+          <div class="m-step">
+            <div class="m-step-num">02</div>
+            <h4>Analyse</h4>
+            <p>Évaluation de l'impact pour les usages entreprise : flottes mobiles, sécurité, couverture.</p>
+          </div>
+          <div class="m-step">
+            <div class="m-step-num">03</div>
+            <h4>Synthèse</h4>
+            <p>Fiche résumé avec sources officielles vérifiées et niveau d'impact évalué.</p>
+          </div>
+          <div class="m-step">
+            <div class="m-step-num">04</div>
+            <h4>Diffusion</h4>
+            <p>Partage en classe et publication sur ce portfolio en ligne.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="s-eyebrow">Contact</div>
+      <h2 class="s-title">Travaillons<br>ensemble.</h2>
+      <p class="s-desc" style="color:rgba(255,255,255,0.45);">Disponible pour des opportunités de stage, d'alternance ou toute question sur mes projets.</p>
+      <div class="contact-links">
+        <a href="mailto:votre@email.fr" class="c-link">
+          <div class="c-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="c-link-label">Email</div>
+            <div class="c-link-val">votre@email.fr</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="c-link">
+          <div class="c-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <div class="c-link-label">LinkedIn</div>
+            <div class="c-link-val">linkedin.com/in/lihounice-boualam</div>
+          </div>
+        </a>
+        <a href="https://github.com" target="_blank" class="c-link">
+          <div class="c-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <div>
+            <div class="c-link-label">GitHub</div>
+            <div class="c-link-val">github.com/lihounice</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal reveal-delay-2">
+      <div class="avatar-orb" style="width:64px;height:64px;margin-bottom:1.25rem;animation:none;">
+        <span style="font-size:1.2rem;">BL</span>
+      </div>
+      <div class="about-title">BOUALAM Lihounice</div>
+      <div class="about-role">BTS SIO — Option SISR · 2ème année · 2024–2025</div>
+      <p class="about-text">Passionnée par les infrastructures réseaux et la sécurité informatique. Rigoureuse et curieuse, je m'adapte rapidement aux nouvelles technologies et aux environnements professionnels variés.</p>
+      <div class="about-chips">
+        <span class="a-chip">Réseaux</span>
+        <span class="a-chip">Sécurité</span>
+        <span class="a-chip">Windows Server</span>
+        <span class="a-chip">Linux</span>
+        <span class="a-chip">Virtualisation</span>
+        <span class="a-chip">PowerShell</span>
+        <span class="a-chip">Cisco</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>BOUALAM Lihounice</strong> · Portfolio BTS SIO Option SISR · 2023–2025
+</footer>
+
+
+<script>
+/* ─── Scroll reveal ─── */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('up'); revealObs.unobserve(e.target); } });
+},{threshold:0.08});
+revealEls.forEach(el => revealObs.observe(el));
+
+/* ─── Nav active + scrolled ─── */
+const navbar = document.getElementById('navbar');
+const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  let cur = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+cur));
+});
+
+/* ─── Veille filter ─── */
+document.querySelectorAll('.vf-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.veille-card').forEach(c => {
+      c.style.display = (f === 'tous' || c.dataset.cat === f) ? 'flex' : 'none';
+    });
+  });
+});
+
+/* ─── Hero stagger on load ─── */
+document.querySelectorAll('.hero-left > *').forEach((el,i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = `opacity 0.7s ${i*0.12}s cubic-bezier(0.4,0,0.2,1), transform 0.7s ${i*0.12}s cubic-bezier(0.4,0,0.2,1)`;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  }));
+});
+</script>
+</body>
+</html>
