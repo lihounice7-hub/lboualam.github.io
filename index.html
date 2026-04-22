@@ -88,75 +88,49 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.06);}
 /* ─── HERO ─── */
 #hero{
   min-height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;align-items:center;
   position:relative;overflow:hidden;
+  background:var(--white);
 }
-.hero-left{
-  padding:140px 4rem 80px;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;z-index:2;
-}
-.hero-right{
-  position:relative;overflow:hidden;
-  background:var(--ink2);
-  display:flex;align-items:center;justify-content:center;
-}
-
-/* Animated grid background on hero-right */
-.hero-right::before{
+#hero::before{
   content:'';position:absolute;inset:0;
   background-image:
-    linear-gradient(rgba(37,99,235,0.15) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(37,99,235,0.15) 1px,transparent 1px);
-  background-size:48px 48px;
-  animation:gridMove 20s linear infinite;
+    radial-gradient(circle at 15% 50%,rgba(37,99,235,0.06) 0%,transparent 50%),
+    radial-gradient(circle at 85% 20%,rgba(124,58,237,0.05) 0%,transparent 40%),
+    radial-gradient(circle at 60% 85%,rgba(5,150,105,0.04) 0%,transparent 40%);
 }
-@keyframes gridMove{0%{background-position:0 0;}100%{background-position:48px 48px;}}
-.hero-right::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center,transparent 30%,var(--ink2) 80%);
-}
-.hero-avatar-scene{
+.hero-center{
+  max-width:860px;width:100%;
+  margin:0 auto;
+  padding:140px 4rem 80px;
   position:relative;z-index:2;
-  display:flex;flex-direction:column;align-items:center;gap:2rem;
 }
-.avatar-orb{
-  width:180px;height:180px;border-radius:50%;
+.hero-avatar-inline{
+  width:72px;height:72px;border-radius:50%;
   background:linear-gradient(135deg,#1D4ED8,#7C3AED);
   display:flex;align-items:center;justify-content:center;
-  position:relative;
-  box-shadow:0 0 0 1px rgba(255,255,255,0.1),0 0 60px rgba(37,99,235,0.4);
-  animation:float 6s ease-in-out infinite;
+  margin-bottom:2rem;
+  box-shadow:0 4px 24px rgba(37,99,235,0.25);
 }
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-.avatar-orb span{
+.hero-avatar-inline span{
   font-family:'Syne',sans-serif;font-weight:800;
-  font-size:3.2rem;color:white;letter-spacing:-1px;
+  font-size:1.4rem;color:white;
 }
-.avatar-ring1{
-  position:absolute;width:210px;height:210px;border-radius:50%;
-  border:1px solid rgba(37,99,235,0.3);
-  animation:ringPulse 3s ease-in-out infinite;
+.avatar-orb{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,#1D4ED8,#7C3AED);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,99,235,0.25);
 }
-.avatar-ring2{
-  position:absolute;width:250px;height:250px;border-radius:50%;
-  border:1px solid rgba(37,99,235,0.15);
-  animation:ringPulse 3s ease-in-out infinite 1s;
+.avatar-orb span{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:white;}
+.hero-tags-row{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem;
 }
-@keyframes ringPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.04);opacity:0.5;}}
-.hero-badges{
-  display:flex;flex-direction:column;gap:10px;align-items:center;
+.hero-tag{
+  font-size:12px;font-weight:500;padding:5px 13px;
+  border-radius:99px;border:1px solid var(--border2);
+  background:var(--white);color:var(--muted);
 }
-.hero-badge-pill{
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:99px;padding:6px 16px;
-  font-size:12px;color:rgba(255,255,255,0.7);
-  font-weight:500;letter-spacing:0.3px;
-  backdrop-filter:blur(8px);
-}
-.hero-badge-pill span{color:var(--accent);font-weight:600;}
 
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -551,54 +525,54 @@ footer strong{color:rgba(255,255,255,0.6);font-weight:600;}
 
 <!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-line"></span>
-      BTS SIO — Option SISR
+  <div class="hero-center">
+
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#ECFDF5;border:1px solid rgba(5,150,105,0.2);border-radius:99px;padding:6px 14px;margin-bottom:2rem;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#059669;display:inline-block;animation:breathe 2s ease-in-out infinite;"></span>
+      <span style="font-size:12px;font-weight:600;color:#059669;">En alternance · Center Store</span>
     </div>
+
     <h1>
       BOUALAM<br>
       <span class="line2">Lihounice</span>
     </h1>
+
     <p class="hero-desc">
-      Étudiante en 2ème année de BTS SIO spécialisée en <strong>réseaux, systèmes et sécurité informatique</strong>. Je conçois, déploie et sécurise des infrastructures numériques.
+      Alternante BTS SIO option SISR chez <strong>Center Store</strong>, je déploie, administre et sécurise des infrastructures informatiques. Passionnée par les réseaux et les systèmes, je transforme des contraintes techniques en solutions concrètes.
     </p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2.5rem;">
+      <div style="display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border2);border-radius:12px;padding:10px 16px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div>
+          <div style="font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:1px;">Formation</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);">BTS SIO · SISR</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border2);border-radius:12px;padding:10px 16px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <div>
+          <div style="font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:1px;">Entreprise</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);">Center Store</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border2);border-radius:12px;padding:10px 16px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <div style="font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:1px;">Localisation</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);">France</div>
+        </div>
+      </div>
+    </div>
+
     <div class="hero-ctas">
       <a href="#projets" class="btn btn-primary">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Mes projets
+        Voir mes projets
       </a>
       <a href="#contact" class="btn btn-secondary">Me contacter</a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">2</div>
-        <div class="stat-label">Stages réalisés</div>
-      </div>
-      <div>
-        <div class="stat-num">4+</div>
-        <div class="stat-label">Projets SI</div>
-      </div>
-      <div>
-        <div class="stat-num">SISR</div>
-        <div class="stat-label">Spécialité</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="hero-right">
-    <div class="hero-avatar-scene">
-      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
-        <div class="avatar-ring1"></div>
-        <div class="avatar-ring2"></div>
-        <div class="avatar-orb"><span>BL</span></div>
-      </div>
-      <div class="hero-badges">
-        <div class="hero-badge-pill">Réseaux <span>TCP/IP</span> · VLAN · Routage</div>
-        <div class="hero-badge-pill">Sécurité <span>ANSSI</span> · Pare-feu · VPN</div>
-        <div class="hero-badge-pill">Systèmes <span>Windows Server</span> · Linux</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -614,60 +588,128 @@ footer strong{color:rgba(255,255,255,0.6);font-weight:600;}
     <div class="projet-grid">
 
       <div class="projet-card reveal reveal-delay-1">
-        <div class="projet-card-top" style="background:#FFF7ED;">
-          <div class="projet-num-bg" style="color:rgba(234,88,12,0.07);">01</div>
-          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(234,88,12,0.15);">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <div class="projet-card-top" style="background:#EBF2FF;">
+          <div class="projet-num-bg" style="color:rgba(37,99,235,0.07);">01</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(37,99,235,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
         </div>
         <div class="projet-body">
-          <div class="projet-label" style="color:#EA580C;">Marketing digital</div>
-          <h3>Développement de la présence en ligne via Google Ads</h3>
-          <p>Création et gestion de campagnes publicitaires sur YouTube, Facebook et Google pour développer la visibilité de l'entreprise. Suivi des performances, optimisation des annonces et analyse des KPIs.</p>
+          <div class="projet-label" style="color:#2563EB;">Sécurité & données</div>
+          <h3>Migration et sécurisation des données utilisateurs</h3>
+          <p>Transfert et sécurisation des données de comptes utilisateurs lors d'un changement d'environnement. Mise en place de droits d'accès et vérification de l'intégrité des données migrées.</p>
           <div class="projet-tags">
-            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">Google Ads</span>
-            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">YouTube</span>
-            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">Facebook Ads</span>
-            <span class="ptag" style="background:#FFF7ED;color:#EA580C;">KPIs</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Migration</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Sécurité</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Droits d'accès</span>
           </div>
         </div>
       </div>
 
       <div class="projet-card reveal reveal-delay-2">
         <div class="projet-card-top" style="background:#FAF5FF;">
-          <div class="projet-num-bg" style="color:rgba(124,58,237,0.08);">02</div>
+          <div class="projet-num-bg" style="color:rgba(124,58,237,0.07);">02</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(124,58,237,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+        </div>
+        <div class="projet-body">
+          <div class="projet-label" style="color:#7C3AED;">Systèmes</div>
+          <h3>Déploiement et mise à niveau de systèmes d'exploitation</h3>
+          <p>Installation et mise à jour de postes de travail sous Windows 11 et macOS. Configuration des environnements utilisateurs, installation des logiciels métier et vérification de la compatibilité.</p>
+          <div class="projet-tags">
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Windows 11</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">macOS</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Déploiement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-card reveal reveal-delay-3" style="grid-column:1/-1;">
+        <div class="projet-card-top" style="background:linear-gradient(135deg,#EBF2FF 0%,#EDE9FE 100%);min-height:120px;">
+          <div class="projet-num-bg" style="color:rgba(37,99,235,0.06);">ITWAY</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 20px rgba(37,99,235,0.2);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
+          </div>
+          <div style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;gap:8px;z-index:1;">
+            <span style="background:white;border:1px solid rgba(37,99,235,0.2);color:#2563EB;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;">Marseille 🏢</span>
+            <span style="background:white;border:1px solid rgba(124,58,237,0.2);color:#7C3AED;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;">Lille 🏢</span>
+          </div>
+        </div>
+        <div class="projet-body">
+          <div class="projet-label" style="color:#2563EB;">Projet phare · Infrastructure SI</div>
+          <h3>Projet ITWAY — Infrastructure réseau multi-sites</h3>
+          <p>Conception et administration d'une infrastructure système et réseau complète, centralisée au siège de Marseille et interconnectée avec le site de Lille. Mise en place de l'ensemble des services réseau, de la sécurité et de l'administration centralisée pour les deux sites.</p>
+          <div class="projet-tags">
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Infrastructure SI</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Réseau multi-sites</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Windows Server</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">Active Directory</span>
+            <span class="ptag" style="background:#EBF2FF;color:#2563EB;">VPN inter-sites</span>
+            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Marseille ↔ Lille</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-card reveal reveal-delay-4">
+        <div class="projet-card-top" style="background:#ECFDF5;">
+          <div class="projet-num-bg" style="color:rgba(5,150,105,0.07);">04</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(5,150,105,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+          </div>
+        </div>
+        <div class="projet-body">
+          <div class="projet-label" style="color:#059669;">Téléphonie mobile</div>
+          <h3>Restauration de système mobile et gestion des accès</h3>
+          <p>Remise en état de smartphones suite à des dysfonctionnements, réinitialisation des systèmes iOS et Android, et gestion des accès et comptes associés aux appareils mobiles.</p>
+          <div class="projet-tags">
+            <span class="ptag" style="background:#ECFDF5;color:#059669;">iOS</span>
+            <span class="ptag" style="background:#ECFDF5;color:#059669;">Android</span>
+            <span class="ptag" style="background:#ECFDF5;color:#059669;">Restauration</span>
+            <span class="ptag" style="background:#ECFDF5;color:#059669;">Gestion des accès</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-card reveal reveal-delay-5">
+        <div class="projet-card-top" style="background:#FAF5FF;">
+          <div class="projet-num-bg" style="color:rgba(124,58,237,0.07);">05</div>
           <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(124,58,237,0.15);">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
         </div>
         <div class="projet-body">
           <div class="projet-label" style="color:#7C3AED;">Support client</div>
-          <h3>Gestion du SAV & suivi des tickets clients</h3>
-          <p>Prise en charge des problématiques clients, réponse aux demandes et résolution des incidents. Mise en place d'un suivi rigoureux via un logiciel interne de gestion des tickets SAV.</p>
+          <h3>Ticketing — Gestion des tickets SAV</h3>
+          <p>Prise en charge des demandes clients, résolution des incidents et suivi des tickets via un logiciel interne de gestion SAV. Réponse aux problématiques et mise en place d'un suivi rigoureux.</p>
           <div class="projet-tags">
             <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">SAV</span>
             <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Ticketing</span>
             <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Relation client</span>
-            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Suivi incidents</span>
           </div>
         </div>
       </div>
 
-      <div class="projet-card reveal reveal-delay-3">
-        <div class="projet-card-top" style="background:#FAF5FF;">
-          <div class="projet-num-bg" style="color:rgba(124,58,237,0.06);">03</div>
-          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(124,58,237,0.15);">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div class="projet-card reveal" style="grid-column:1/-1;max-width:500px;cursor:pointer;" onclick="window.open('Documentation_Portfolio.pdf','_blank')">
+        <div class="projet-card-top" style="background:#FFFBEB;">
+          <div class="projet-num-bg" style="color:rgba(217,119,6,0.07);">06</div>
+          <div class="projet-icon-wrap" style="background:white;box-shadow:0 4px 16px rgba(217,119,6,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div style="position:absolute;right:1.25rem;top:50%;transform:translateY(-50%);background:var(--amber-light);border:1px solid rgba(217,119,6,0.2);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700;color:var(--amber);display:flex;align-items:center;gap:5px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir la doc
           </div>
         </div>
         <div class="projet-body">
-          <div class="projet-label" style="color:#7C3AED;">Systèmes Windows</div>
-          <h3>Domaine Active Directory complet</h3>
-          <p>Installation d'un contrôleur de domaine, unités d'organisation, GPO, politique de mots de passe et jonction des postes clients au domaine.</p>
+          <div class="projet-label" style="color:#D97706;">Portfolio BTS</div>
+          <h3>Portfolio — Ce site web</h3>
+          <p>Conception et développement de ce portfolio numérique pour présenter mes réalisations, ma veille technologique et mes compétences acquises en BTS SIO SISR.</p>
           <div class="projet-tags">
-            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Windows Server</span>
-            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">Active Directory</span>
-            <span class="ptag" style="background:#FAF5FF;color:#7C3AED;">GPO</span>
+            <span class="ptag" style="background:#FFFBEB;color:#D97706;">HTML / CSS</span>
+            <span class="ptag" style="background:#FFFBEB;color:#D97706;">JavaScript</span>
+            <span class="ptag" style="background:#FFFBEB;color:#D97706;">GitHub Pages</span>
+            <span class="ptag" style="background:#FFFBEB;color:#D97706;">lboualam.fr</span>
           </div>
         </div>
       </div>
@@ -903,7 +945,7 @@ document.querySelectorAll('.vf-btn').forEach(btn => {
 });
 
 /* ─── Hero stagger on load ─── */
-document.querySelectorAll('.hero-left > *').forEach((el,i) => {
+document.querySelectorAll('.hero-center > *').forEach((el,i) => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = `opacity 0.7s ${i*0.12}s cubic-bezier(0.4,0,0.2,1), transform 0.7s ${i*0.12}s cubic-bezier(0.4,0,0.2,1)`;
